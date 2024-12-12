@@ -94,7 +94,7 @@ helm uninstall my-nginx-server
 helm upgrade --install my-nginx-server bitnami/nginx
 ```
 ```bash
-helm upgrade --install my-nginx-server bitnami/nginx --set replicaCount=2
+helm upgrade --install my-nginx-server bitnami/nginx --set replicaCount=4
 ```
 
 ### 11. Revision History 
