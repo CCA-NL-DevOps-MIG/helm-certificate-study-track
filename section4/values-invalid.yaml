@@ -1,4 +1,4 @@
-customLivenessProbe:
+customReadinessProbe:
   httpGet:
-    path: /nonexistent-path
+    path: /nonexistent-paths
     port: http

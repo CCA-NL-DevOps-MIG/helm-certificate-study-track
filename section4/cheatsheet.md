@@ -15,7 +15,7 @@ helm template my-nginx --values values-template.yaml bitnami/nginx > template_3.
 ```
 
 ```bash
-helm template my-nginx --set "replica.count=3" bitnami/nginx > template_1.yaml
+helm template my-nginx --set "replicaCount=5" bitnami/nginx > template_5.yaml
 ```
 
 ### 2. Helm install dry-run
@@ -39,11 +39,11 @@ helm get manifest <release-name>
 ```
 
 ```bash
-helm get manifest my-nginx
+helm get manifest my-nginx-server > manifest_current.yaml
 ```
 
 ```bash
-helm get manifest my-nginx --revision 1
+helm get manifest my-nginx-server --revision 2 > manifest_2.yaml
 ```
 
 ### 4. Helm Get Values
@@ -53,7 +53,7 @@ helm get values <release-name>
 ```
 
 ```bash
-helm get values my-nginx
+helm get values my-nginx-server
 ```
 
 ### 5. Helm Get All
@@ -63,7 +63,7 @@ helm get all <release-name>
 ```
 
 ```bash
-helm get all my-nginx
+helm get all my-nginx-server > all.txt
 ```
 
 ### 6. Helm Get Metadata, Hooks & Notes
@@ -73,7 +73,7 @@ helm get metadata <release-name>
 ```
 
 ```bash
-helm get metadata my-nginx
+helm get metadata my-nginx-server
 ```
 
 ```bash
@@ -81,7 +81,7 @@ helm get hooks <release-name>
 ```
 
 ```bash
-helm get hooks my-nginx
+helm get hooks my-nginx-server
 ```
 
 ```bash
@@ -89,7 +89,7 @@ helm get notes <release-name>
 ```
 
 ```bash
-helm get notes my-nginx
+helm get notes my-nginx-server
 ```
 
 ### 7. Helm History
@@ -99,7 +99,7 @@ helm history <release-name>
 ```
 
 ```bash
-helm history my-nginx
+helm history my-nginx-server
 ```
 
 ### 8. Helm Rollback
@@ -109,7 +109,7 @@ helm rollback <release-name> <revision>
 ```
 
 ```bash
-helm rollback my-nginx 1
+helm rollback my-nginx-server 9
 ```
 
 
@@ -127,6 +127,10 @@ helm install <release-name> <chart> --namespace <namespace> --create-namespace
 
 ```bash
 helm install my-nginx-server bitnami/nginx --namespace my-namespace --create-namespace
+```
+
+```bash
+helm list --namespace my-namespace
 ```
 
 ### 10. Generated Release Name
@@ -150,17 +154,17 @@ helm install <release-name> <chart> --wait-for-job --timeout <duration>
 ```
 
 ```bash
-helm install my-nginx-server bitnami/nginx --wait --timeout 10m
+helm install my-nginx-server-3 bitnami/nginx --wait
 ```
 
 ### 12. Atomic install
 
 ```bash
-helm upgrade --install <release-name> <chart> --atomic
+helm upgrade --install <release-name> <chart> --atomic --timeout 1m
 ```
 
 ```bash
-helm upgrade --install my-nginx-server bitnami/nginx --atomic
+helm upgrade --install my-nginx-server bitnami/nginx --values values-invalid.yaml --atomic --timeout 1m
 ```
 
 ### 13. Helm upgrade by force
@@ -171,15 +175,5 @@ helm upgrade --install <release-name> <chart> --force
 
 ```bash
 helm upgrade --install my-nginx-server bitnami/nginx --force
-```
-
-### 14. Helm cleanup on fail
-
-```bash
-helm upgrade --install <release-name> <chart> --cleanup-on-fail
-```
-
-```bash
-helm upgrade --install my-nginx-server bitnami/nginx --cleanup-on-fail
 ```
 
