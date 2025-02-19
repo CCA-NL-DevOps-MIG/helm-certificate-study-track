@@ -1,0 +1,26 @@
+---
+# Source: my-helm-chart/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: liv-app-configuratie
+  labels:
+    app: liv-app-configuratie
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: liv-app-configuratie
+  template:
+    metadata:
+      labels:
+        app: liv-app-configuratie
+    spec:
+      containers:
+        - name: liv-app-configuratie
+          image: "nginx:1.0.0"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
