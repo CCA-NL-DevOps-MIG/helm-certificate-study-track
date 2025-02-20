@@ -2,7 +2,13 @@
 
 ## Helm Chart File Server
 
-### 1. Generate Chart Repo Index
+### 1. Add repo 
+
+```bash 
+helm repo add my-repo http://localhost:8080
+```
+
+### 2. Generate Chart Repo Index
 
 ```bash
 helm repo index <folder> 
@@ -14,12 +20,6 @@ helm repo index files
 
 ```bash
 helm repo update 
-```
-
-### 2. Add repo 
-
-```bash 
-helm repo add my-repo http://localhost:8080
 ```
 
 ### 3. Helm package
