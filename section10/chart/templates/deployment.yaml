@@ -22,3 +22,13 @@ spec:
             - name: http
               containerPort: 8080
               protocol: TCP
+{{ if .Values.defaultLandingPage }}
+          volumeMounts:
+            - name: nginx-welcome
+              mountPath: /usr/share/nginx/html/index.html
+              subPath: index.html
+      volumes:
+        - name: nginx-welcome
+          configMap:
+            name: {{ .Release.Name }}-custom-page
+{{ end }}
